@@ -23,14 +23,12 @@ const maxpos=1e15
 𝚺 = sum          # alias for sum, tab-completition: \bfSigma
 𝛍 = mean         # alias for mean, tab-completition: \bfmu
 ⋱ = Diagonal     # alias for Diagonal, tab-completition: ⋱\ddots
-ℍ = Hermitian    # alias for Hermitian, tab completion \bbH
+ℍ = Hermitian   # alias for Hermitian, tab completion \bbH
 
 # types
 
 RealOrComplex=Union{Real, Complex}
-ℍVector=Vector{ℍ}           # vector of Hermitian matrices
-ℍVector₂=Vector{ℍVector}    # vector of vectors of Hermitian matrices
-
+ℍVector=Vector{ℍ}
 
 @enum Metric begin
     Euclidean    =1  # distance: δ_e; mean: Arithmetic
@@ -46,6 +44,7 @@ RealOrComplex=Union{Real, Complex}
     #...
 end
 
+import Statistics.mean
 
 export
     # From this module
@@ -66,7 +65,6 @@ export
     #types
     RealOrComplex,
     ℍVector,
-    ℍVector₂,
     Metric,
         Euclidean,
         invEuclidean,
@@ -119,9 +117,8 @@ export
     laplacian,
     laplacianEigenMaps, laplacianEM,
     spectralEmbedding,
-    meanP,
-    meansP,
     generalizedMean,
+    mean,
     powerMean,
     logdet0Mean,
     wasMean,
@@ -140,6 +137,6 @@ include("signalProcessing.jl")
 include("riemannianGeometry.jl")
 include("test.jl")
 
-println("\n⭐"," Welcome to the PosDefManifold package", "⭐\n")
+println("\n⭐ "," Welcome to the PosDefManifold package v dev.", "⭐\n")
 
 end # module
